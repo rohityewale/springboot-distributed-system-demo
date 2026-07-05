@@ -7,6 +7,7 @@ import com.demo.springbootdistributedsystemdemo.mapper.ProductMapper;
 import com.demo.springbootdistributedsystemdemo.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductResponseDTO> create(@RequestBody ProductRequestDTO productRequestDTO) {
+    public ResponseEntity<ProductResponseDTO> create(@RequestBody @Validated ProductRequestDTO productRequestDTO) {
         Product product = productService.create(productRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productMapper.map(product));
