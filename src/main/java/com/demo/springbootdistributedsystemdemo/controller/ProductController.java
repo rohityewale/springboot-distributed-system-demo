@@ -3,7 +3,6 @@ package com.demo.springbootdistributedsystemdemo.controller;
 import com.demo.springbootdistributedsystemdemo.dto.ProductRequestDTO;
 import com.demo.springbootdistributedsystemdemo.dto.ProductResponseDTO;
 import com.demo.springbootdistributedsystemdemo.entity.Product;
-import com.demo.springbootdistributedsystemdemo.exception.ProductNotFoundException;
 import com.demo.springbootdistributedsystemdemo.mapper.ProductMapper;
 import com.demo.springbootdistributedsystemdemo.service.ProductService;
 import org.springframework.http.HttpStatus;
