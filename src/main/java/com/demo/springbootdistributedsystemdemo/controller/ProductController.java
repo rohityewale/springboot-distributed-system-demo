@@ -34,4 +34,10 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productMapper.map(product));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> update(@PathVariable String id, @RequestBody @Validated ProductRequestDTO productRequestDTO) {
+        Product product = productService.update(id, productRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(productMapper.map(product));
+    }
 }

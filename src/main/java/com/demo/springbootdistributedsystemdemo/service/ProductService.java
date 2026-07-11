@@ -8,4 +8,6 @@ public interface ProductService {
     Product getById(String id) throws ProductNotFoundException;
 
     Product create(ProductRequestDTO productRequestDTO);
+
+    Product update(String id, ProductRequestDTO productRequestDTO);
 }
