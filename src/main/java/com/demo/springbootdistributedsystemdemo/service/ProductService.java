@@ -10,4 +10,6 @@ public interface ProductService {
     Product create(ProductRequestDTO productRequestDTO);
 
     Product update(String id, ProductRequestDTO productRequestDTO);
+
+    String delete(String id);
 }

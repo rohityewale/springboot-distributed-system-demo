@@ -40,4 +40,10 @@ public class ProductController {
         Product product = productService.update(id, productRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(productMapper.map(product));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable String id) {
+        String idDeleted = productService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Product id: " + idDeleted + " is deleted");
+    }
 }
