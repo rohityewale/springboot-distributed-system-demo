@@ -3,6 +3,7 @@ package com.demo.springbootdistributedsystemdemo.service.impl;
 import com.demo.springbootdistributedsystemdemo.dto.ProductRequestDTO;
 import com.demo.springbootdistributedsystemdemo.entity.Product;
 import com.demo.springbootdistributedsystemdemo.exception.ProductNotFoundException;
+import com.demo.springbootdistributedsystemdemo.producer.ProductEventProducer;
 import com.demo.springbootdistributedsystemdemo.repository.ProductRepository;
 import com.demo.springbootdistributedsystemdemo.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,8 +20,11 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
-    public ProductServiceImpl(ProductRepository productRepository) {
+    private final ProductEventProducer productEventProducer;
+
+    public ProductServiceImpl(ProductRepository productRepository, ProductEventProducer productEventProducer) {
         this.productRepository = productRepository;
+        this.productEventProducer = productEventProducer;
     }
 
     @Override
@@ -37,7 +41,9 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productRequestDTO.name());
         product.setDescription(productRequestDTO.description());
         product.setPrice(productRequestDTO.price());
-        return productRepository.save(product);
+        Product save = productRepository.save(product);
+        productEventProducer.publishProductEvents(save);
+        return save;
     }
 
     @Override

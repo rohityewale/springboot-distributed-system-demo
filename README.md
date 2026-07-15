@@ -30,7 +30,7 @@ A production-style Spring Boot project to learn and implement distributed system
 - [x] MongoDB Atlas connectivity
 - [x] Health Check API
 - [x] Product CRUD APIs
-- [ ] Redis Integration
-- [ ] Kafka Integration
+- [x] Redis Integration
+- [x] Kafka Integration
 - [ ] Observability
 - [ ] Security
